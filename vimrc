@@ -27,6 +27,10 @@ set autochdir
 " 设置终端使用颜色为 256 色
 set t_Co=256 
 
+" 设置不自动折行
+" 设置后，当一行的字符过长时，会超出 vim 界面最右侧时，而不是在下一行显示
+set nowrap
+
 "" 语法高亮相关配置 {
 " 开启语法高亮
 syntax enable
@@ -45,7 +49,8 @@ set cursorline
 " 设置光标所在当前列显示为高亮
 set cursorcolumn
 " 设置对搜索结果高亮
-" set hlsearch
+" 可通过输入 :noh 或 :nohlsearch 关闭当前高亮结果，或者搜索一个文档中不存在的词，比如搜索乱按的一串字符 /aklsdfjaldf
+set hlsearch
 " 设置当按 n/N 向下/上跳转搜索结果是，提示已是最下/上方的搜索结果
 set ruler
 " }
@@ -67,7 +72,7 @@ set number relativenumber
 " 设置显示 tab 键时对应的 space 数，注意仅仅只是修改了显示 tab 键时的长度，而并不是将 tab 键转换为 4 个 space
 set tabstop=4
 " 设置输入 tab 键时，将其转换为 space
-" 这个设置才是输入时的 tab 向 space 的转换
+" 这个设置才是输入时进行的 tab 向 space 的转换
 set expandtab
 
 " 设置 backspace 键对一些情况的处理
