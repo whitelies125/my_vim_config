@@ -31,23 +31,34 @@ set t_Co=256
 " 设置后，当一行的字符过长时，会超出 vim 界面最右侧时，而不是在下一行显示
 set nowrap
 
+" 设置 :help 命令搜索帮助文件时的语言优先顺序
+" 当然非英语的帮助文档本身是需要自己去网上找、下载的，将 .cnx 文件放在 vimfiles/doc 目录下
+set helplang=cn
+
 "" 语法高亮相关配置 {
 " 开启语法高亮
 syntax enable
-" 设置 molokai 的选项
-let g:molokai_original = 1
-let g:rehash256 = 1
-" 设置高亮主题为 molokai。主题路径于 vimfiles/colors/ 
-colorscheme molokai
+
+" solarized 主题相关配置
+let g:solarized_termcolors=256
+set background=light
+" 设置高亮主题为 solarized。主题路径于 vimfiles/colors/ 
+colorscheme solarized
 
 " 设置 C 风格函数高亮
 syn match cUserFunction "\<\h\w*\>\(\s\|\n\)*("me=e-1 contains=cParen,cCppParen
 hi def link cUserFunction Function
 
+" 设置使用 CTRL-] 时搜索 tags 文件的路径, 从文件当前所在目录以此递归搜索自所在根目录
+" 详见 :help file-searching 中的 upward search 部分
+set tags=./tags;
+
 " 设置光标所在当前行显示为高亮
 set cursorline
 " 设置光标所在当前列显示为高亮
 set cursorcolumn
+" 设置第 81 列高亮
+set colorcolumn=81
 " 设置对搜索结果高亮
 " 可通过输入 :noh 或 :nohlsearch 关闭当前高亮结果，或者搜索一个文档中不存在的词，比如搜索乱按的一串字符 /aklsdfjaldf
 set hlsearch
