@@ -1,4 +1,7 @@
-call plug#begin('~/vimfiles/plugged')
+" vim-plug begin()里可以指定插件保存目录，不指定'文件夹位置'的话，则默认使用为
+" - Vim (Linux/macOS): '~/.vim/plugged'
+" - Vim (Windows): '~/vimfiles/plugged'
+call plug#begin()
 " vim 帮助文档中文
 Plug 'yianwillis/vimcdoc'
 " airline 插件
@@ -7,17 +10,44 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 " 用于 :colorscheme 的 solarized 配色方案
 Plug 'altercation/vim-colors-solarized'
+" 用于在 vim 的 singcolum 显示 git diff 修改状态, 对比前后修改<leader>hp, 在 git hunks 修改块之间跳转，以及配合 airline 显示总修改数
+Plug 'airblade/vim-gitgutter'
+" 用于通过 :Git xxx 使用 git xxx 命令，以及配合 airline 显示当前所在分支
+Plug 'tpope/vim-fugitive'
 call plug#end()
-
 
 """ vim-airline 相关设置
 " {
-let g:airline_theme = 'light'
+" 设置 vim-airline 主题
+let g:airline_theme = 'solarized'
+" 设置使用 powerline 字体（需自己下载安装 powerline 字体)
+let g:airline_powerline_fonts = 1
 " 启用 tabline
 let g:airline#extensions#tabline#enabled = 1
 " 设置 tabline 为默认显示配置
 let g:airline#extensions#tabline#formatter = 'default'
 
+" 开启显示当前所在的 git branch, 需安装其它插件配合 如 fugitive
+let g:airline#extensions#branch#enabled = 1
+" 设置在 airline 显示 hunks 总的修改状态
+let g:airline#extensions#hunks#enabled = 1
+" }
+""" }
+
+""" vim-gitgutter 相关设置
+" {
+" 设置高亮显示有修改的行
+let g:gitgutter_highlight_lines = 1
+" 设置高亮显示有修改的行的行号
+let g:gitgutter_highlight_linenrs = 1
+" }
+""" }
+
+""" vimcdoc 相关设置
+" {
+" 设置 :help 命令搜索帮助文件时的语言优先顺序
+" 当然非英语的帮助文档本身是需要自己去网上找、下载的
+set helplang=cn,en
 " }
 """ }
 
@@ -27,7 +57,7 @@ let g:airline#extensions#tabline#formatter = 'default'
 set nocompatible
 
 " 设置不创建备份文件。
-" 若开启，则 vim 编辑文件 file.cpp 时，会自动先创建一份该文件的备份文件 file.cpp~，即创建一份与原文件 file.cpp 内容一摸一样的备份文件 file.cpp~，然后我们编辑的是 file.cpp 文件
+" 若开启，则 vim 编辑文件 file.cpp 时，会自动先创建一份该文件的备份文件 file.cpp~
 set nobackup
 " 设置不保留撤销历史。
 " 若开启，则 vim 编辑文件 file.cpp 时，会自动创建该文件的 .file.cpp.un~ 文件.
@@ -49,9 +79,6 @@ set clipboard=unnamed
 " 设置后，当一行的字符过长时，会超出 vim 界面最右侧时，而不是在下一行显示
 set nowrap
 
-" 设置 :help 命令搜索帮助文件时的语言优先顺序
-" 当然非英语的帮助文档本身是需要自己去网上找、下载的，将 .cnx 文件放在 vimfiles/doc 目录下
-set helplang=cn,en
 
 "" 颜色、语法高亮相关配置
 "{
@@ -64,7 +91,7 @@ syntax enable
 " solarized 主题相关配置
 let g:solarized_termcolors=256
 set background=light
-" 设置主题为 solarized。主题路径于 vimfiles/colors/
+" 设置主题为 solarized
 colorscheme solarized
 
 " 通过正则表达式匹配 C 风格函数进行高亮
@@ -111,6 +138,14 @@ set shiftwidth=0
 " 设置 C 风格的自动缩进
 set cindent
 
+" 设置关键字补全(ctrl-n)的搜索范围
+set complete=.,w,b
+" 设置关键字补全列表选项
+set completeopt=menu,menuone,preview,
+
+" 设置 <Leader> 为空格键，若不设置默认为反斜杠\
+let mapleader=" "
+
 " 设置 backspace 键对一些情况的处理
 " indent  允许在自动缩进上退格
 " eol     允许在换行符上退格（连接行）
@@ -126,4 +161,13 @@ set backspace=indent,eol,nostop
 
 "" 按键映射相关配置
 " 插入模式映射
-imap jj <Esc>
+inoremap jj <Esc>
+inoremap u32 uint32_t
+inoremap u16 uint16_t
+inoremap u8 uint8_t
+
+" 删除行尾空格
+nnoremap rmsp :%s/ *$//g<Enter>:nohl<Enter>
+
+
+
