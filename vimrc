@@ -26,6 +26,8 @@ Plug 'autozimu/LanguageClient-neovim', {
             \ }
 " C/C++ 基于正则表达式和关键字的高亮
 Plug 'bfrg/vim-cpp-modern'
+" 用于(默认为:) ( [ { ' " ` 等字符的自动成对补全和成对删除，并调整光标位置等
+Plug 'jiangmiao/auto-pairs'
 call plug#end()
 
 """ vimcdoc 相关设置
@@ -118,6 +120,17 @@ let g:cpp_attributes_highlight = 1
 let g:cpp_member_highlight = 1
 " 开启将所有 C/C++ 标准关键字为 Statement 高亮(affects both C and C++ files)
 let g:cpp_simple_highlight = 1
+" }
+""" }
+
+""" auto-pairs 相关设置
+" {
+" 设置开启 Fly Mode，即在 insert 模式下输入 } 时是跳转到下一个 } 之后
+" 如果我真要插入 } 呢, 使用 i_CTRL-V } 进行插入 或 在 } 后使用 <M-b>
+let g:AutoPairsFlyMode = 1
+" 设置关闭在 ([{<Enter> 后，若光标所在行处于窗口下1/3 则 zz 调整至窗口中间
+let g:AutoPairsCenterLine = 0
+" 顺带我发现这个插件的 <M-b> <M-e> <M-n> 在 WSL 中不生效，貌似有 bug，实测 windows 上的 vim 正常
 " }
 """ }
 
