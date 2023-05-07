@@ -22,7 +22,7 @@ Plug 'tpope/vim-fugitive'
 " LSP(Language Server Protocol) 的 Language Client
 Plug 'autozimu/LanguageClient-neovim', {
             \ 'branch': 'next',
-            \ 'do': 'bash install.sh',
+            \ 'do': has('unix') ? 'bash install.sh' : 'powershell -executionpolicy bypass -File install.ps1',
             \ }
 " C/C++ 基于正则表达式和关键字的高亮
 Plug 'bfrg/vim-cpp-modern'
@@ -88,25 +88,35 @@ let g:gitgutter_preview_win_floating = 0
 
 """ LanguageClient-neovim 相关设置, LanguageServer 需要另外安装
 " {
-"  如果需要使用 clangd 的全局修改变量名的话，设置 set hidden,
+"  如果需要使用 clangd 的全局修改变量名的话，设置 set hidden, 未写入时可切换  buffer,
 "  否则，在默认不设置的情况下会在未写入前关闭窗口会被 vim 阻止
 set hidden
+" name 随便起一个名就好吧，没见着哪里有什么用
+" command: 打开对应类型文件时，启动 LS 的命令, 我用的 clangd 就简单写个 clangd 了
 let g:LanguageClient_serverCommands = {
-    \ 'cpp': ['clangd'],
-    \ 'c': ['clangd'],
-    \ }
-" }
-" 设置为 LanguageServer 载入配置文件，其实默认就是 1
-let g:LanguageClient_loadSettings = 1
-" server 配置文件的位置, 然后还需要在这个 settings.json 文件里写一些配置
-let g:LanguageClient_settingsPath = '~/.vim/settings.json'
-
-" 查看变量定义
-nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
-" 跳转到定义，直接就使用 gd 映射啦, vim 原生 gd 一般（不太好用），毕竟大多数场景我都是需要跳转到定义的
-nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
+  \     'cpp': {
+  \         'name': 'cpp-lsp',
+  \         'command': ['clangd'],
+  \     },
+  \     'c': ['clangd'],
+  \ }
 " 全局重命名
-nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
+nnoremap <F2> :call LanguageClient#textDocument_rename()<CR>
+" 查看变量声明 Ld; List declaration
+nnoremap Ld :call LanguageClient#textDocument_hover()<CR>
+" 跳转到定义，直接就使用 gd 映射啦, vim 原生 gd 一般（不太好用），毕竟大多数场景我都是需要跳转到定义的
+" goto definition
+nnoremap gd :call LanguageClient#textDocument_definition()<CR>
+" 跳转至当前文件的 .h 或 .cpp; goto header
+nnoremap gh :call LanguageClient#textDocument_switchSourceHeader()<CR>
+" 查看光标所在关键字的引用; List references
+nnoremap Lr :call LanguageClient#textDocument_references()<CR>
+" 跳转到上一个提示
+nnoremap <silent> [x :call LanguageClient#diagnosticsPrevious()<CR>
+" 跳转到下一个提示
+nnoremap <silent> ]x :call LanguageClient#diagnosticsNext()<CR>
+" 选择 clangd 的提示自动修改代码错误
+nmap Fix <Plug>(lcn-code-action)
 " }
 """ }
 
