@@ -1,14 +1,10 @@
-print('require keymaps begin')
-
 -- 按键映射相关配置
 
 -- 修改 <Leader> 键为空格键，默认值为反斜杠 \
 vim.g.mapleader = " "
 
-
 local opt_default = { noremap = true, silent = true }
 local mode_i = { 'i' }
-local mode_ni = { 'n', 'i' }
 
 -- 插入模式映射
 -- inoremap int8 int8_t
@@ -33,5 +29,3 @@ local keymaps = {
 for _, v in ipairs(keymaps) do
     vim.keymap.set(v.mode, v.from, v.to, v.opt)
 end
-
-print('require keymaps end')

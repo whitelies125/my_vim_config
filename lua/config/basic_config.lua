@@ -1,5 +1,3 @@
-print('require basic_config begin')
-
 -- 一些与 nvim 本身相关的、比较基础的选项设置
 
 -- vim 中的选项，在 lua 中是 vim.o(类型为 table) 中的变量
@@ -9,6 +7,8 @@ vim.o.clipboard = 'unnamedplus'
 -- 设置不自动折行
 vim.o.wrap = false
 
+-- 设置在终端中使用 24 位彩色
+vim.o.termguicolors = true
 -- 设置当前行显示为绝对行号，其它行显示为相对行号
 vim.o.number = true
 vim.o.relativenumber = true
@@ -33,8 +33,17 @@ vim.o.tabstop = 4
 vim.o.expandtab = true
 -- 设置(自动)缩进使用的空白数目，例如作用于使用 <<，>> 命令时。shiftwidth=0 表示使用与 tabstop 相同的数值
 vim.o.shiftwidth = 0
+-- 设置缩进总是取整到 shiftwidth 的整数倍
+vim.o.shiftround = true
+-- 设置智能自动缩进，在换行时自动缩进
+vim.o.smartindent = true
+-- 设置开启部分字符的显示方式
+vim.o.list = true
+-- 设置部分字符显示的样式
+ vim.o.listchars = "tab:→ ,trail:·,eol:↵"
+
+-- 设置光标靠近屏幕顶端/底部时，保持光标与屏幕顶端/底部有 n 行
+vim.o.scrolloff = 4
 
 -- 设置补全列表选项
-vim.o.completeopt = 'menuone,preview,noinsert'
-
-print('require basic_config end')
+vim.o.completeopt = 'menuone,preview'
