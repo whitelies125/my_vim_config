@@ -22,4 +22,5 @@ require("lazy").setup({
     require("plugins.nvim-lspconfig"),
     require("plugins.telescope"),
     require("plugins.gitsigns"),
+    require("plugins.simple_comment"),
 })

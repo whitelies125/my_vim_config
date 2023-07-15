@@ -22,8 +22,8 @@ local keymaps = {
     { mode = mode_i, from = 'u16', to = 'uint16_t',  opt = opt_default },
     { mode = mode_i, from = 'u32', to = 'uint32_t',  opt = opt_default },
     { mode = mode_i, from = 'u8m', to = 'UINT8_MAX',  opt = opt_default },
-    { mode = mode_i, from = 'u16m', to = 'UINT16_MAx',  opt = opt_default },
-    { mode = mode_i, from = 'u32m', to = 'UINT32_MAx',  opt = opt_default },
+    { mode = mode_i, from = 'u16m', to = 'UINT16_MAX',  opt = opt_default },
+    { mode = mode_i, from = 'u32m', to = 'UINT32_MAX',  opt = opt_default },
 }
 
 for _, v in ipairs(keymaps) do
