@@ -1,7 +1,7 @@
 -- 用于添加注释 or 取消注释
 return {
-    "whitelies125/simple_comment.nvim",
     -- 插件在 github 的 URL
+    "whitelies125/simple_comment.nvim",
     -- 当 lazy.nvim 加载该插件时，将会执行 config.
     -- config 可设置为
     -- true：表示执行 lazy.nvim 提供的默认实现的函数，该默认实现会执行该插件的 setup(opts) 函数
