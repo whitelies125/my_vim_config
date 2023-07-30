@@ -3,10 +3,10 @@
   "gitsigns.nvim": { "branch": "main", "commit": "5a04466685008f29c71fa5ec25d421deb1c83fea" },
   "lazy.nvim": { "branch": "main", "commit": "14d76aac4bd3ff07c1fca074c210f28f766a931e" },
   "lualine.nvim": { "branch": "master", "commit": "05d78e9fd0cdfb4545974a5aa14b1be95a86e9c9" },
-  "nvim-commaround": { "branch": "master", "commit": "f0d4c7911d3a4c8c6da63df67457783c130655ef" },
   "nvim-lspconfig": { "branch": "master", "commit": "4b26897a80c41eb2f116b271cbdcd4686fb52dd6" },
   "plenary.nvim": { "branch": "master", "commit": "1a6a7c929628566cf406aa7da1d048a1ddc7e9a8" },
-  "simple_comment.nvim": { "branch": "master", "commit": "fae4d4ef72a75a19489f13fa7ff84b3006ce36b0" },
+  "simple_comment.nvim": { "branch": "master", "commit": "b51ab55d1b28991901678c92d1db4ea299716fea" },
+  "simple_pairs.nvim": { "branch": "master", "commit": "10fc33c6133812afd52aa277d26c8a45b5a16f78" },
   "telescope.nvim": { "branch": "master", "commit": "776b509f80dd49d8205b9b0d94485568236d1192" },
   "tidy.nvim": { "branch": "main", "commit": "dc52ab804217cc468412e33bdd3bf47e944d1758" }
 }

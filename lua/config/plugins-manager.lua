@@ -23,4 +23,5 @@ require("lazy").setup({
     require("plugins.telescope"),
     require("plugins.gitsigns"),
     require("plugins.simple_comment"),
+    require("plugins.simple_pairs"),
 })
