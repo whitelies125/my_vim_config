@@ -25,4 +25,5 @@ require("lazy").setup({
     require("plugins.simple_comment"),
     require("plugins.simple_pairs"),
     require("plugins.simple_highlight_words"),
+    require("plugins.which_key"),
 })

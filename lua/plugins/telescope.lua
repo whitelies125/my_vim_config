@@ -13,9 +13,12 @@ return {
     config = function(_, opts)
         local builtin = require('telescope.builtin')
         local map_opts = { noremap = true, silent = true }
-        vim.keymap.set('n', '<leader>ff', builtin.find_files, map_opts)
-        vim.keymap.set('n', '<leader>fg', builtin.live_grep, map_opts)
-        vim.keymap.set('n', '<leader>fb', builtin.buffers, map_opts)
-        vim.keymap.set('n', '<leader>fh', builtin.help_tags, map_opts)
+        local map_opts = function(str)
+            return { noremap = true, silent = true, desc = str }
+        end
+        vim.keymap.set('n', '<leader>ff', builtin.find_files, map_opts("telescope: find files"))
+        vim.keymap.set('n', '<leader>fg', builtin.live_grep, map_opts("telescope: live grep"))
+        vim.keymap.set('n', '<leader>fb', builtin.buffers, map_opts("telescope: buffers"))
+        vim.keymap.set('n', '<leader>fh', builtin.help_tags, map_opts("telescope: help tags"))
     end
 }
