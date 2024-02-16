@@ -27,4 +27,6 @@ require("lazy").setup({
     require("plugins.simple_highlight_words"),
     require("plugins.which_key"),
     require("plugins.neo_tree"),
+    require("plugins.mason"),
+    require("plugins.mason_lspconfig"),
 })

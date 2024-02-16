@@ -2,6 +2,9 @@
 return {
     -- 插件在 github 的 URL
     "neovim/nvim-lspconfig",
+    dependencies = {
+        "williamboman/mason-lspconfig.nvim",
+    },
     -- 开启懒加载, 在触发特定事件 or 执行特定命令 or 打开特定类型文件 or 输入特定按键时才加载该插件
     lazy = true,
     -- lazy == true 时，当打开特定类型文件时，才加载该插件
@@ -22,7 +25,15 @@ return {
             end
         end
         if vim.bo.filetype == 'lua' then
-            lspconfig.lua_ls.setup {}
+            lspconfig.lua_ls.setup {
+                settings = {
+                    Lua = {
+                        diagnostics = {
+                            globals = { "vim" }
+                        }
+                    },
+                },
+            }
         end
         -- Global mappings.
         -- See `:help vim.diagnostic.*` for documentation on any of the below functions
