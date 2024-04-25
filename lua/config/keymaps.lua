@@ -11,6 +11,7 @@ local mode_i = { 'i' }
 -- vim.keymap.set('i', 'int8', 'int8_t', {noremap = true, silent = true})
 --
 local keymaps = {
+--[[
     { mode = mode_i, from = 'i8', to = 'int8_t',  opt = opt_default },
     { mode = mode_i, from = 'i16', to = 'int16_t',  opt = opt_default },
     { mode = mode_i, from = 'i32', to = 'int32_t',  opt = opt_default },
@@ -24,6 +25,7 @@ local keymaps = {
     { mode = mode_i, from = 'u8m', to = 'UINT8_MAX',  opt = opt_default },
     { mode = mode_i, from = 'u16m', to = 'UINT16_MAX',  opt = opt_default },
     { mode = mode_i, from = 'u32m', to = 'UINT32_MAX',  opt = opt_default },
+--]]
 }
 
 for _, v in ipairs(keymaps) do
