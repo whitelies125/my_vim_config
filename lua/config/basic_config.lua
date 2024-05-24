@@ -46,4 +46,4 @@ vim.o.list = true
 vim.o.scrolloff = 4
 
 -- 设置补全列表选项
-vim.o.completeopt = 'menuone,preview'
+vim.o.completeopt = 'menuone,popup'
