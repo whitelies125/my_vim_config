@@ -29,4 +29,5 @@ require("lazy").setup({
     require("plugins.neo_tree"),
     require("plugins.mason"),
     require("plugins.mason_lspconfig"),
+    require("plugins.nvim-cmp"),
 })

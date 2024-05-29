@@ -1,7 +1,9 @@
 -- 用于文件树，查看目录等
 return {
     "nvim-neo-tree/neo-tree.nvim",
+    -- 指定仓库的分支
     branch = "v3.x",
+    -- 当加载该插件时，dependencies 总是在其之前前完成加载
     dependencies = {
         "nvim-lua/plenary.nvim",
         "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
