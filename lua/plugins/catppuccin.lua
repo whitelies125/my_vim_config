@@ -11,11 +11,12 @@ return {
     -- 加载插件时，opts 将会传递给 config
     opts = {
         -- flavour = Latte/Frappe/Macchiato/Mocha
-        flavour = "frappe",
+        flavour = "Latte",
         transparent_background = true, -- disables setting the background color.
         show_end_of_buffer = false, -- shows the '~' characters after the end of buffers
         integrations = {
             neotree = true,
+            gitsigns = true,
         },
     },
     -- 当 lazy.nvim 加载该插件时，将会执行 config.
