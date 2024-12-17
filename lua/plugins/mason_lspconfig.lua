@@ -4,12 +4,17 @@ return {
     "williamboman/mason-lspconfig.nvim",
     dependencies = {
         "williamboman/mason.nvim",
+        "neovim/nvim-lspconfig",
+        -- 用于给 lsp 传递配置，使其配合 nvim-cmp 插件
+        'hrsh7th/cmp-nvim-lsp',
     },
     -- 当 lazy.nvim 加载该插件时，将会执行 config.
     -- config 可设置为
     -- true：表示执行 lazy.nvim 提供的默认实现的函数，该默认实现会执行该插件的 setup(opts) 函数
     -- fun(LazyPlugin, opts:table): 执行 config 定义的回调函数
     config = function(_, opts)
+        local lspconfig = require('lspconfig')
+        local capabilities = require('cmp_nvim_lsp').default_capabilities()
         require("mason-lspconfig").setup {
             -- A list of servers to automatically install if they're not already installed. Example: { "rust_analyzer@nightly", "lua_ls" }
             -- This setting has no relation with the `automatic_installation` setting.
@@ -28,17 +33,29 @@ return {
 
             -- See `:h mason-lspconfig.setup_handlers()`
             ---@type table<string, fun(server_name: string)>?
-            --[[
             handlers = {
                 -- The first entry (without a key) will be the default handler
                 -- and will be called for each installed server that doesn't have
                 -- a dedicated handler.
-                function (server_name) -- default handler (optional)
-                    require("lspconfig")[server_name].setup {}
+                function(server_name) -- default handler (optional)
+                    lspconfig[server_name].setup {
+                        capabilities = capabilities,
+                    }
                 end,
-                -- Next, you can provide targeted overrides for specific servers.
-            },
-            --]]
+                -- Next, you can provide a dedicated handler for specific servers.
+                -- For example, a handler override for the `rust_analyzer`:
+                ['lua_ls'] = function()
+                    lspconfig.lua_ls.setup {
+                        settings = {
+                            Lua = {
+                                diagnostics = {
+                                    globals = { "vim" }
+                                },
+                            },
+                        },
+                    }
+                end
+            }
         }
     end,
 }

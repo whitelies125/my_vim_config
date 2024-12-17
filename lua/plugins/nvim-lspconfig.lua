@@ -4,8 +4,6 @@ return {
     "neovim/nvim-lspconfig",
     dependencies = {
         "williamboman/mason-lspconfig.nvim",
-        -- 用于给 lsp 传递配置，使其配合 nvim-cmp 插件
-        'hrsh7th/cmp-nvim-lsp',
     },
     -- 开启懒加载, 在触发特定事件 or 执行特定命令 or 打开特定类型文件 or 输入特定按键时才加载该插件
     -- lazy = true,
@@ -16,24 +14,7 @@ return {
     -- true：表示执行 lazy.nvim 提供的默认实现的函数，该默认实现会执行该插件的 setup(opts) 函数
     -- fun(LazyPlugin, opts:table): 执行 config 定义的回调函数
     config = function(_, opts)
-        -- Setup language servers.
-        local lspconfig = require('lspconfig')
-        local capabilities = require('cmp_nvim_lsp').default_capabilities()
-        -- 启动 clangd
-        lspconfig.clangd.setup {
-            capabilities = capabilities
-        }
-        lspconfig.lua_ls.setup {
-            settings = {
-                Lua = {
-                    diagnostics = {
-                        globals = { "vim" }
-                    },
-                    capabilities = capabilities
-                },
-            },
-        }
-        lspconfig.pyright.setup {}
+        -- Setup language servers. 交由 mason-lspconfig 启动 lsp
         -- Global mappings.
         -- See `:help vim.diagnostic.*` for documentation on any of the below functions
         local map_opts = function(str)
