@@ -55,5 +55,6 @@ return {
                 end, map_opts_buf("lsp: format the buffer"))
             end,
         })
+        vim.diagnostic.config({ virtual_text = true })
     end
 }
