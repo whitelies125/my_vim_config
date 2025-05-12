@@ -31,6 +31,14 @@ return {
                 },
             },
         })
+        vim.lsp.config.clangd = {
+            init_options = {
+                fallbackFlags = {
+                    '-std=c++23',
+                    '--target=x86_64-w64-windows-gnu'
+                }
+            },
+        }
         require("mason-lspconfig").setup {
             -- A list of servers to automatically install if they're not already installed. Example: { "rust_analyzer@nightly", "lua_ls" }
             ---@type string[]
