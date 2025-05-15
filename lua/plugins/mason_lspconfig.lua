@@ -31,14 +31,21 @@ return {
                 },
             },
         })
-        vim.lsp.config.clangd = {
+        vim.lsp.config('clangd', {
             init_options = {
+                -- fallbackFlags 只用于找不到文件对应编译命令时使用
+                -- 例如没有 compile_command.json 的单文件 or 项目
+                -- 如果找到文件对应的编译命令，例如在 compile_command.json 中找到了，
+                -- 那么这个 fallbackFlags 是没有作用的
+                -- 参考：
+                -- https://clangd.llvm.org/extensions
+                -- https://clang.llvm.org/extra/doxygen/Protocol_8h_source.html
                 fallbackFlags = {
                     '-std=c++23',
-                    '--target=x86_64-w64-windows-gnu'
+                    '--target=x86_64-w64-windows-gnu',
                 }
             },
-        }
+        })
         require("mason-lspconfig").setup {
             -- A list of servers to automatically install if they're not already installed. Example: { "rust_analyzer@nightly", "lua_ls" }
             ---@type string[]
