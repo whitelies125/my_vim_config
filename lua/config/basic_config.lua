@@ -19,7 +19,7 @@ vim.o.cursorline = true
 -- 设置光标所在当前列显示为高亮
 -- vim.o.cursorcolumn = true
 -- 设置第 81 列高亮
-vim.o.colorcolumn = '81'
+-- vim.o.colorcolumn = '81'
 
 -- 设置搜索时忽略大小写进行匹配
 vim.o.ignorecase = true
