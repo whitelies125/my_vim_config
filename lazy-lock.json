@@ -20,5 +20,6 @@
   "simple_pairs.nvim": { "branch": "master", "commit": "53356355b89797aeb3e4e07f9e9ca3861cb669b5" },
   "telescope.nvim": { "branch": "master", "commit": "3333a52ff548ba0a68af6d8da1e54f9cd96e9179" },
   "tidy.nvim": { "branch": "main", "commit": "8b6921150b16f38f48a2459a844a0c2b4c916914" },
+  "trouble.nvim": { "branch": "main", "commit": "bd67efe408d4816e25e8491cc5ad4088e708a69a" },
   "which-key.nvim": { "branch": "main", "commit": "3aab2147e74890957785941f0c1ad87d0a44c15a" }
 }

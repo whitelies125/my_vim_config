@@ -30,4 +30,5 @@ require("lazy").setup({
     require("plugins.mason"),
     require("plugins.mason_lspconfig"),
     require("plugins.nvim-cmp"),
+    require("plugins.trouble"),
 })
